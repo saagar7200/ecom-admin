@@ -6,7 +6,7 @@ const Page = () =>{
     return (
         <div>
            <PageHeading title="Category List" link="/categories/create" buttonText="Add New Category" />
-           <div>
+           <div className='mt-5'>
             <CategoryList/>
            </div>
         </div>

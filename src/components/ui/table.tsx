@@ -79,7 +79,7 @@ const columns = [
 ]
 
 function Table() {
-  const [data, _setData] = React.useState(() => [...defaultData])
+  const [data] = React.useState(() => [...defaultData])
 
   const table = useReactTable({
     data,
@@ -88,13 +88,13 @@ function Table() {
   })
 
   return (
-    <div className="p-2 border border-red-500">
-      <table>
-        <thead>
+    <div className=" border border-gray-300 shadow-md mx-10 rounded-md min-h-[400px]">
+      <table className=' w-full flex-1 tracking-wider'>
+        <thead className='py-8 border-b border-gray-300 bg-blue-500 text-white '>
           {table.getHeaderGroups().map(headerGroup => (
-            <tr key={headerGroup.id}>
+            <tr   key={headerGroup.id}>
               {headerGroup.headers.map(header => (
-                <th key={header.id}>
+                <th className='py-2' key={header.id}>
                   {header.isPlaceholder
                     ? null
                     : flexRender(
@@ -106,18 +106,18 @@ function Table() {
             </tr>
           ))}
         </thead>
-        <tbody>
+        <tbody className='min-h-[400px]'>
           {table.getRowModel().rows.map(row => (
             <tr key={row.id}>
               {row.getVisibleCells().map(cell => (
-                <td key={cell.id}>
+                <td className='text-center py-2' key={cell.id}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}
             </tr>
           ))}
         </tbody>
-        <tfoot>
+        {/* <tfoot>
           {table.getFooterGroups().map(footerGroup => (
             <tr key={footerGroup.id}>
               {footerGroup.headers.map(header => (
@@ -132,7 +132,7 @@ function Table() {
               ))}
             </tr>
           ))}
-        </tfoot>
+        </tfoot> */}
       </table>
       <div className="h-4" />
 
