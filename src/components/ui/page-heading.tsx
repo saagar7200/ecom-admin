@@ -10,7 +10,7 @@ interface IProps {
 
 const PageHeading:React.FC<IProps> = ({title,link,buttonText}) =>{
     return (
-        <div className='tracking-wider flex w-full items-center justify-between px-6'>
+        <div className='tracking-wider flex w-full items-center justify-between px-6 mt-5'>
             <p className='font-bold text-2xl'>{title}</p>
             {buttonText && <Link href={link ?? '/'}>
             <button className='cursor-pointer rounded-md px-3 py-2 font-bold tracking-wider bg-blue-500 text-white '>{buttonText}</button>
