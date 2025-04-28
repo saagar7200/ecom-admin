@@ -36,6 +36,11 @@ const AuthProvider = ({children}:{children:ReactNode}) =>{
         setIsAuthenticated(() => !!Cookies.get('access_token'))
     },[user])
 
+    useEffect(()=>{
+       
+        setIsAuthenticated(() => !!Cookies.get('access_token'))
+    },[])
+
 
 
     const logout = () => {

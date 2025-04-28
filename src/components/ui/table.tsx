@@ -30,9 +30,9 @@ function Table({columns,data}:IProps) {
   })
 
   return (
-    <div className=" border border-gray-300 shadow-md mx-10 rounded-md min-h-[400px] overflow-hidden">
+    <div className=" border border-gray-300 shadow-md mx-10 rounded-md min-h-[400px] overflow-auto">
       <table className=' w-full flex-1 tracking-wider'>
-        <thead className='py-8 border-b border-gray-300 bg-blue-500 text-white overflow-hidden'>
+        <thead className='py-8 border-b border-gray-300 bg-blue-500 text-white overflow-auto'>
           {table.getHeaderGroups().map(headerGroup => (
             <tr   key={headerGroup.id}>
               {headerGroup.headers.map(header => (
@@ -53,7 +53,7 @@ function Table({columns,data}:IProps) {
             <tr key={row.id}>
               {row.getVisibleCells().map(cell => (
                 <td className='text-center py-2' key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  {flexRender(cell.column.columnDef.cell, cell.getContext() )  ?? '-'}
                 </td>
               ))}
             </tr>

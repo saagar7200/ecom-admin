@@ -1,9 +1,12 @@
+import PageHeading from "@/components/ui/page-heading"
 
 
 const Page = () =>{
     return (
         <div>
-            Category create
+           <PageHeading title="Create New Category"  />
+
+           
         </div>
     )
 }

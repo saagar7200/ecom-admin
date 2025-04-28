@@ -1,6 +1,8 @@
 
 'use client'
 import SideBar from '@/components/layout/sidebar';
+import { useAuth } from '@/context/auth.context';
+import { useRouter } from 'next/navigation';
 import React from 'react'
 
 interface IProps {
@@ -8,6 +10,11 @@ interface IProps {
 }
 
 const Layout: React.FC<IProps> = ({ children }) => {
+    const {isAuthenticated} = useAuth()
+    const router = useRouter()
+    if(!isAuthenticated){
+        router.replace('/login')
+    }
     return (
         <div className='flex h-full w-ful '>
             <div className='h-full w-[250px] border-r border-gray-400'>
