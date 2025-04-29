@@ -1,22 +1,43 @@
-
+'use client'
 import React from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Input from '../ui/input';
 import { ICategoryInput } from '@/interface/category.interface';
 import categoryInputSchema from '@/schemas/category.schema';
+import {createCategory} from '@/api/category'
+import {useMutation,useQueryClient} from '@tanstack/react-query'
+import {toast} from 'react-hot-toast'
+ 
 
 
 const CategoryForm = () =>{
     const methods = useForm<ICategoryInput>({
         resolver: yupResolver(categoryInputSchema),
+        defaultValues:{
+            name:'',
+            description:''
+        }
       });
+
+      const queryClient = useQueryClient()
+      const {mutate,isPending} = useMutation({
+        mutationFn:createCategory,
+        onSuccess:(data) =>{
+            toast.success(data?.message ?? 'category created')
+            queryClient.invalidateQueries({queryKey:['categories']})
+            methods.reset()
+        },
+        onError:(error) =>{
+            toast.error(error?.message ?? 'operation failed')
+        }
+      })
     
       const onSubmit = (data: ICategoryInput) => {
         console.log(data);
       };
     return (
-        <FormProvider {...methods}> {/* Provide the methods to child components */}
+        <FormProvider {...methods}> 
         <form onSubmit={methods.handleSubmit(onSubmit)} className="max-w-lg mx-auto p-4">
        
         <div className='flex flex-col gap-4'>
@@ -29,8 +50,9 @@ const CategoryForm = () =>{
         />
 
         <button
+          disabled={isPending}
           type="submit"
-          className="mt-4 w-full bg-indigo-600 text-white py-2 px-4 rounded-md"
+          className="disabled:cursor-not-allowed  mt-4 w-full bg-blue-500 text-white py-3 px-4 rounded-md tracking-wider font-bold cursor-pointer"
         >
           Submit
         </button>
