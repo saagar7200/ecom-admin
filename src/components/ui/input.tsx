@@ -8,6 +8,7 @@ type InputProps = {
   placeholder?: string;
   required?: boolean;
   defaultValue?: string;
+  multiline?: boolean;
 };
 
 const Input = ({
@@ -15,7 +16,7 @@ const Input = ({
   label,
   type = 'text',
   placeholder = '',
- 
+  multiline = false,
   defaultValue = '',
 }: InputProps) => {
   const {
@@ -32,18 +33,28 @@ const Input = ({
         name={name}
         control={control}
         defaultValue={defaultValue}
-        render={({ field }) => (
-          <input
-            {...field}
-            type={type}
-            placeholder={placeholder}
-            id={name}
-            className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${errors[name] ? 'border-red-500' : 'border-gray-300'}`}
-          />
-        )}
+        render={({ field }) =>
+          multiline ? (
+            <textarea
+              {...field}
+              placeholder={placeholder}
+              id={name}
+              rows={4} // You can adjust rows or use a dynamic height depending on the content
+              className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${errors[name] ? 'border-red-500' : 'border-gray-300'}`}
+            />
+          ) : (
+            <input
+              {...field}
+              type={type}
+              placeholder={placeholder}
+              id={name}
+              className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${errors[name] ? 'border-red-500' : 'border-gray-300'}`}
+            />
+          )
+        }
       />
       {errors[name] && (
-        <p className="text-red-500 text-xs mt-1">{errors[name as string]?.message  as string}</p>
+        <p className="text-red-500 text-xs mt-1">{errors[name as string]?.message as string}</p>
       )}
     </div>
   );

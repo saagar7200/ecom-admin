@@ -21,6 +21,19 @@ const CategoryForm = () =>{
        
         <div className='flex flex-col gap-4'>
         <Input name={'name'} label={'Category Name'} placeholder={'Electronics'}/>
+        <Input
+          name="description"
+          label="Description"
+          placeholder="Enter description (optional)"
+          multiline={true} // Render as a textarea
+        />
+
+        <button
+          type="submit"
+          className="mt-4 w-full bg-indigo-600 text-white py-2 px-4 rounded-md"
+        >
+          Submit
+        </button>
         </div>
         </form>
         </FormProvider>
