@@ -53,3 +53,13 @@ export const createProduct = async(data:IProductInput) =>{
         throw error?.response?.data; 
     }
 }
+
+export const deleteProduct = async(id:string) =>{
+    try{
+        const response = await api.delete(`/product/${id}`)
+        return response?.data
+
+    }catch(error:any){
+        throw error?.response?.data; 
+    }
+}

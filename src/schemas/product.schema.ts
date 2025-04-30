@@ -33,7 +33,7 @@ const productInputSchema = yup.object().shape({
     .typeError('Price must be a number')
     .positive('Price must be a positive number')
     .required('Price is required'),
-  coverImage: fileValidation,
+    coverImage: fileValidation,
   images: fileArrayValidation,
 });
 
