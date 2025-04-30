@@ -34,7 +34,7 @@ const CategoryForm = () =>{
       })
     
       const onSubmit = (data: ICategoryInput) => {
-        console.log(data);
+        mutate(data)
       };
     return (
         <FormProvider {...methods}> 
