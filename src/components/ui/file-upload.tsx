@@ -72,7 +72,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
 
   return (
     <div className="mb-4">
-      {label && <label className="block mb-2 font-medium">{label}</label>}
+      {label && <label className="block text-md font-semibold font-medium text-gray-700 tracking-wider">{label}</label>}
       <div
         {...getRootProps()}
         className={`border-2 border-dashed rounded p-4 cursor-pointer text-center ${

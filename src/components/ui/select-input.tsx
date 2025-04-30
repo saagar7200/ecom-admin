@@ -26,7 +26,7 @@ const SelectInput: React.FC<SelectInputProps> = ({ name, label, options, placeho
 
   return (
     <div className="mb-4">
-      {label && <label className="block mb-2 font-medium">{label}</label>}
+      {label && <label className="block text-md font-semibold font-medium text-gray-700 tracking-wider">{label}</label>}
       <Select
         options={options}
         value={options.find(option => option.value === value) || null}

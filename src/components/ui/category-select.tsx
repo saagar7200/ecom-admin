@@ -22,15 +22,21 @@ const CategorySelect: React.FC = () => {
     queryFn: getAllCategory,
   });
 
+//   if(isLoading){
+//     return <p>Loading</p>
+//   }
+
+//   console.log('cat select', data?.data)
+
   const options: Option[] =
-    data?.data?.map((cat: { _id: string; name: string }) => ({
+    data?.data?.data?.map((cat: { _id: string; name: string }) => ({
       value: cat._id,
       label: cat.name,
     })) || [];
 
   return (
     <div className="mb-4">
-      <label className="block mb-2 font-medium">Category</label>
+      {/* <label className="block mb-2 font-medium">Category</label> */}
       <SelectInput
         options={options}
         placeholder="Select a category"

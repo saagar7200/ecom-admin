@@ -37,7 +37,25 @@ const ProductForm = () => {
   });
 
   const onSubmit:SubmitHandler<IProductInput> = (data) => {
-    mutate(data);
+    const formData = new FormData();
+  formData.append('name', data.name);
+  formData.append('description', data.description || '');
+  formData.append('category', data.category);
+  formData.append('price', data.price.toString());
+
+  // Handle file inputs
+  if (data.coverImage instanceof File) {
+    formData.append('coverImage', data.coverImage);
+  }
+
+  if (Array.isArray(data.images)) {
+    data.images.forEach((image, i) => {
+      if (image instanceof File) {
+        formData.append(`images`, image); // append multiple images
+      }
+    });
+  }
+    mutate(formData);
   };
 
   return (
@@ -55,7 +73,7 @@ const ProductForm = () => {
             placeholder="Enter product description"
             multiline={true}
           />
-          <Input name="category" label="Category" placeholder="Electronics" />
+          {/* <Input name="category" label="Category" placeholder="Electronics" /> */}
           <Input
             name="price"
             label="Price"
