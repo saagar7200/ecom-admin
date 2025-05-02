@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import api from "@/axios/api.axios";
-import { IProductInput } from '@/interface/product.interface';
+// import { IProductInput } from '@/interface/product.interface';
 
 
 export const getAllProducts = async() =>{
@@ -44,7 +44,7 @@ export const getProductById = async(id:string) =>{
     }
 }
 
-export const createProduct = async(data:IProductInput) =>{
+export const createProduct = async(data:any) =>{
     try{
         const response = await api.post(`/product`,data)
         return response?.data
